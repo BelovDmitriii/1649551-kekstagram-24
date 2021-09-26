@@ -10,7 +10,10 @@ getRandomNumber(10, 23);
 
 
 function lengthCheck(string, maxLengthOfString) {
-  string < maxLengthOfString ? true : false;
+  if (string < maxLengthOfString) {
+    return true;
+  }
+  return false;
 }
 
 lengthCheck(130,140);

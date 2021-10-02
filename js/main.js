@@ -24,7 +24,7 @@ const NAMES = [
   'Анатолий',
 ];
 
-const PhotoDescription = [
+const PHOTO_DESCRIPTION = [
   'Кукла колдуна',
   'Камнем по голове',
   'Дурак и молния',
@@ -54,7 +54,7 @@ const getRandomElement = (element) => element[_.random(0, element.length - 1)];
 const createPhotoDescription = () => ({
   id:  _.random(1,25),
   url: `/photos/ ${_.random(1,25)} .jpg`,
-  description: getRandomElement(PhotoDescription),
+  description: getRandomElement(PHOTO_DESCRIPTION),
   likes: _.random(15, 200),
   comments: {
     id: _.random(),
@@ -65,3 +65,5 @@ const createPhotoDescription = () => ({
 });
 
 const photosDescription = Array.from({length: PHOTO_DESCRIPTION_COUNT}, createPhotoDescription);
+// eslint-disable-next-line no-console
+console.log(photosDescription);

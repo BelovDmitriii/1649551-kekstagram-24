@@ -1,18 +1,3 @@
-// const getRandomNumber = (min, max) => {
-//   if(min < 0 || max < 0){
-//     return -1;
-//   } else if (max <= min) {
-//     [min, max] = [max, min];
-//   }
-//   return Math.floor(Math.random()*(max + 1 - min)) + min;
-// };
-// getRandomNumber(10, 23);
-
-
-// const lengthCheck = (string, maxLengthOfString) => string.length <= maxLengthOfString;
-
-// lengthCheck('good morning',140);
-
 const NAMES = [
   'Дмитрий',
   'Артём',
@@ -49,21 +34,44 @@ const MESSAGES = [
 
 const PHOTO_DESCRIPTION_COUNT = 25;
 
+const getRandomInt = (min, max) => {
+  if (min < 0 || max < 0){
+    return -1;
+  }
+  if (min > max) {
+    [min, max] = [max, min];
+  }
+  return Math.floor(Math.random() * (max - min + 1)) + min;
+};
+
 const getRandomElement = (element) => element[_.random(0, element.length - 1)];
 
+const createComments = () => {
+  const comments = [];
+  for (let index = 0; index < getRandomInt(1,2); index++){
+    comments.push(
+      {
+        id: index + 1,
+        avatar: `img/avatar-${_.random(1, 6)}.svg`,
+        message: getRandomElement(MESSAGES),
+        name: getRandomElement(NAMES),
+      },
+    );
+  }
+  return comments;
+};
+
+let id = 1;
+
 const createPhotoDescription = () => ({
-  id:  _.random(1,25),
+  id:  id++,
   url: `/photos/ ${_.random(1,25)} .jpg`,
   description: getRandomElement(PHOTO_DESCRIPTION),
   likes: _.random(15, 200),
-  comments: {
-    id: _.random(),
-    avatar: `img/avatar-${_.random(1, 6)}.svg`,
-    message: getRandomElement(MESSAGES),
-    name: getRandomElement(NAMES),
-  },
+  comments: createComments(),
 });
 
 const photosDescription = Array.from({length: PHOTO_DESCRIPTION_COUNT}, createPhotoDescription);
+
 // eslint-disable-next-line no-console
 console.log(photosDescription);

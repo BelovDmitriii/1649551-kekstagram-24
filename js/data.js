@@ -64,7 +64,7 @@ const createComments = () => {
     comments.push(
       {
         id: index + 1,
-        avatar: `img/avatar-${getRandomInt(1, TOTAL_AVATARS)}.svg`,
+        avatar: `img/avatar-${getRandomInt(1,TOTAL_AVATARS)}.svg`,
         message: getRandomElement(MESSAGES),
         name: getRandomElement(NAMES),
       },
@@ -77,10 +77,10 @@ let id = 1;
 
 const createPhotoDescription = () => ({
   id:  id++,
-  url: `/photos/ ${getRandomInt(1,TOTAL_PHOTOS)} .jpg`,
+  url: `/photos/${getRandomInt(1,TOTAL_PHOTOS)}.jpg`,
   description: getRandomElement(PHOTO_DESCRIPTION),
   likes: getRandomInt(LikesCount.MIN, LikesCount.MAX),
   comments: createComments(),
 });
 
-export const photosDescription = Array.from({length: PHOTO_DESCRIPTION_COUNT}, createPhotoDescription);
+export const photosDescription = Array.from({length: PHOTO_DESCRIPTION_COUNT + 1}, createPhotoDescription);

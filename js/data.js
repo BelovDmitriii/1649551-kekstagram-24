@@ -1,3 +1,5 @@
+import { getRandomInt, getRandomElement } from './utils.js';
+
 const NAMES = [
   'Дмитрий',
   'Артём',
@@ -32,8 +34,6 @@ const MESSAGES = [
   'Лица у людей на фотке перекошены, как будто их избивают. Как можно было поймать такой неудачный момент?!',
 ];
 
-//const checkStringLength = (string, length) => string.length <= length;
-
 const PHOTO_DESCRIPTION_COUNT = 25;
 const LikesCount = {
   MIN: 15,
@@ -45,18 +45,6 @@ const CommentsCount = {
   MIN: 1,
   MAX: 3,
 };
-
-const getRandomInt = (min, max) => {
-  if (min < 0 || max < 0){
-    return -1;
-  }
-  if (min > max) {
-    [min, max] = [max, min];
-  }
-  return Math.floor(Math.random() * (max - min + 1)) + min;
-};
-
-const getRandomElement = (element) => element[getRandomInt(0, element.length - 1)];
 
 const createComments = () => {
   const comments = [];

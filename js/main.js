@@ -1,8 +1,6 @@
-import './forms.js';
-import './filter.js/';
+import {createPhotos} from './pictures.js';
+import './filter.js';
 import './photo-description.js';
-import './preview.js';
-import {photosDescription} from './util.js';
+import './pictures.js';
 
-// eslint-disable-next-line no-console
-console.log(photosDescription);
+createPhotos();

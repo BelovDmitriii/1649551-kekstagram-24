@@ -3,7 +3,7 @@ import { photosDescription } from './data.js';
 const pictures = document.querySelector('.pictures');
 const pictureTemplate = document.querySelector('#picture').content.querySelector('.picture');
 
-const createPhoto = ({url, comments, likes}) => {
+const renderPhoto = ({url, comments, likes}) => {
   const pictureElement = pictureTemplate.cloneNode(true);
   pictureElement.querySelector('.picture__img').src = url;
   pictureElement.querySelector('.picture__comments').textContent = comments.length;
@@ -12,11 +12,15 @@ const createPhoto = ({url, comments, likes}) => {
 };
 
 const fragment = document.createDocumentFragment();
-const createPhotos = () => {
+const renderPhotos = () => {
   photosDescription.forEach((item) => {
-    fragment.appendChild(createPhoto(item));
+    fragment.appendChild(renderPhoto(item));
   });
   pictures.appendChild(fragment);
 };
 
-export {createPhotos};
+const clearPhotos = () => {
+  pictures.innerHTML = '';
+};
+
+export {renderPhotos, clearPhotos};

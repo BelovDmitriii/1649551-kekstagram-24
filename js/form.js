@@ -26,7 +26,7 @@ const closeForm = () => {
   document.removeEventListener('keydown', onCloseFormEscKeyDown);
 };
 
-fileUpload.addEventListener('click', () => {
+fileUpload.addEventListener('change', () => {
   openForm();
 });
 

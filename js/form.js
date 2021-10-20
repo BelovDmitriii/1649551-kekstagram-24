@@ -4,7 +4,7 @@ const body = document.querySelector('body');
 const overlay = body.querySelector('.img-upload__overlay');
 
 const fileUpload = body.querySelector('#upload-file');
-const formUpload = body.querySelector('#upload-select-image');
+
 const formUploadClose = body.querySelector('#upload-cancel');
 
 const onCloseFormEscKeyDown = (evt) => {

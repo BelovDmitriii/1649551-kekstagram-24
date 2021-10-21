@@ -10,6 +10,6 @@ const getRandomInt = (min, max) => {
 
 const getRandomElement = (element) => element[getRandomInt(0, element.length - 1)];
 
-const isEscapeKey = (evt) => evt.key === 'Escape';
+const isEscapeKey = (evt) => evt.key === 'Escape' || evt.key === 'Esc';
 
 export {getRandomInt, getRandomElement, isEscapeKey};

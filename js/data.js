@@ -65,7 +65,7 @@ let id = 1;
 
 const createPhotoDescription = () => ({
   id:  id++,
-  url: `/photos/${getRandomInt(1,TOTAL_PHOTOS)}.jpg`,
+  url: `./photos/${getRandomInt(1,TOTAL_PHOTOS)}.jpg`,
   description: getRandomElement(PHOTO_DESCRIPTION),
   likes: getRandomInt(LikesCount.MIN, LikesCount.MAX),
   comments: createComments(),

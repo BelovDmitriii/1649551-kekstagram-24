@@ -41,7 +41,7 @@ inputHashtag.addEventListener( 'input', () => {
     invalidMessages.push('Хэш-теги разделяются пробелами');
   }
 
-  const isRepeatHashtag = inputArray.some((item, i, arr) => arr.indexOf(item, i + 1) >= i + 1);
+  const isRepeatHashtag = inputArray.some((item, num, arr) => arr.indexOf(item, num + 1) >= num + 1);
   if(isRepeatHashtag) {
     invalidMessages.push('Один и тот же хэш-тег не может быть использован дважды');
   }

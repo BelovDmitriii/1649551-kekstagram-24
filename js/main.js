@@ -3,5 +3,6 @@ import './filter.js';
 import './photo-description.js';
 import './pictures.js';
 import './form.js';
+import './hashtags.js';
 
 renderPhotos();

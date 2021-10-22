@@ -18,7 +18,7 @@ const scaleControllBiggerButton = body.querySelector('.scale__control--bigger');
 const scaleControllValue = body.querySelector('.scale__control--value');
 
 const onCloseFormEscKeyDown = (evt) => {
-  if (isEscapeKey(evt)) {
+  if (isEscapeKey(evt) & !evt.target.classList.contains('text__hashtags') & !evt.target.classList.contains('text__description')) {
     evt.preventDefault();
     overlay.classList.add('hidden');
   }

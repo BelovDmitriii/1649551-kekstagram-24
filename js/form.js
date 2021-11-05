@@ -16,6 +16,7 @@ const formUploadClose = body.querySelector('#upload-cancel');
 const scaleControllSmallerButton = body.querySelector('.scale__control--smaller');
 const scaleControllBiggerButton = body.querySelector('.scale__control--bigger');
 const scaleControllValue = body.querySelector('.scale__control--value');
+const imagePreview = document.querySelector('.img-upload__preview');
 
 const onCloseFormEscKeyDown = (evt) => {
   if (isEscapeKey(evt) & !evt.target.classList.contains('text__hashtags') & !evt.target.classList.contains('text__description')) {
@@ -51,6 +52,7 @@ scaleControllSmallerButton.addEventListener('click', () => {
   }
   size -= zoomValue.STEP;
   scaleControllValue.value = `${size}%`;
+  imagePreview.style.transform = `scale(${size / 100})`;
 });
 
 scaleControllBiggerButton.addEventListener('click', () => {
@@ -60,4 +62,7 @@ scaleControllBiggerButton.addEventListener('click', () => {
   }
   size += zoomValue.STEP;
   scaleControllValue.value = `${size}%`;
+  imagePreview.style.transform = `scale(${size / 100})`;
 });
+
+export {scaleControllValue};

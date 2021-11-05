@@ -16,12 +16,6 @@ inputHashtag.addEventListener( 'input', () => {
 
   const inputArray = inputText.split(/\s+/);
 
-  const isWrongSymbols = inputArray.some((item) => !/^#[A-Za-zA-Яа-яЁё0-9]{1,19}$/.test(item));
-
-  if (isWrongSymbols) {
-    invalidMessages.push('Введены недопустимые символы');
-  }
-
   if (inputArray.length === 0) {
     return;
   }
@@ -44,6 +38,12 @@ inputHashtag.addEventListener( 'input', () => {
   const isRepeatHashtag = inputArray.some((item, num, arr) => arr.indexOf(item, num + 1) >= num + 1);
   if(isRepeatHashtag) {
     invalidMessages.push('Один и тот же хэш-тег не может быть использован дважды');
+  }
+
+  const isWrongSymbols = inputArray.some((item) => !/^#[A-Za-zA-Яа-яЁё0-9]{1,19}$/.test(item));
+
+  if (isWrongSymbols) {
+    invalidMessages.push('Введены недопустимые символы');
   }
 
   const isLongHashtag = inputArray.some((item) => item.length > MAX_SYMBOLS);

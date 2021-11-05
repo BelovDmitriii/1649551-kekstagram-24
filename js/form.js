@@ -1,4 +1,7 @@
-import { isEscapeKey } from './utils.js';
+import {isEscapeKey} from './utils.js';
+import {image,effects} from './effects.js';
+import { sendData } from './fetch.js';
+import { showErrorMessage, showSuccessMessage } from './messages.js';
 
 const zoomValue = {
   MIN: 25,
@@ -8,32 +11,34 @@ const zoomValue = {
 
 const body = document.querySelector('body');
 const overlay = body.querySelector('.img-upload__overlay');
-
 const fileUpload = body.querySelector('#upload-file');
-
 const formUploadClose = body.querySelector('#upload-cancel');
-
 const scaleControllSmallerButton = body.querySelector('.scale__control--smaller');
 const scaleControllBiggerButton = body.querySelector('.scale__control--bigger');
 const scaleControllValue = body.querySelector('.scale__control--value');
 const imagePreview = document.querySelector('.img-upload__preview');
-
-const onCloseFormEscKeyDown = (evt) => {
-  if (isEscapeKey(evt) & !evt.target.classList.contains('text__hashtags') & !evt.target.classList.contains('text__description')) {
-    evt.preventDefault();
-    overlay.classList.add('hidden');
-  }
-};
+const formUpload = document.querySelector('.img-upload__form');
 
 const closeForm = () => {
   overlay.classList.add('hidden');
   body.classList.remove('modal-open');
-  document.removeEventListener('keydown', onCloseFormEscKeyDown);
+  imagePreview.style.transform = '';
+  imagePreview.className = 'img-upload__preview';
+  imagePreview.style.filter = 'none';
+  formUpload.reset();
+};
+
+const onCloseFormEscKeyDown = (evt) => {
+  if (isEscapeKey(evt) && !evt.target.classList.contains('text__hashtags') && !evt.target.classList.contains('text__description')) {
+    evt.preventDefault();
+    closeForm();
+  }
 };
 
 const openForm = () => {
   overlay.classList.remove('hidden');
   body.classList.add('modal-open');
+  image.style.filter = effects.none();
   document.addEventListener('keydown', onCloseFormEscKeyDown);
 };
 
@@ -65,4 +70,16 @@ scaleControllBiggerButton.addEventListener('click', () => {
   imagePreview.style.transform = `scale(${size / 100})`;
 });
 
-export {scaleControllValue};
+const setUserformSubmit = (onSuccess) => {
+  formUpload.addEventListener('submit', (evt) => {
+    evt.preventDefault();
+    sendData(
+      () => onSuccess(showSuccessMessage()),
+      () => showErrorMessage(),
+      new FormData(evt.target),
+    );
+  });
+};
+
+
+export {scaleControllValue, closeForm, setUserformSubmit};

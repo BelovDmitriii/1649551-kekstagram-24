@@ -1,5 +1,7 @@
 import { scaleControllValue } from './form.js';
 
+const DEFAULT_EFFECT_LEVEL = 100;
+
 const Slider = {
   MIN: 0,
   MAX: 100,
@@ -13,6 +15,7 @@ const effectLevelValue = document.querySelector('.effect-level__value');
 const sliderElement = document.querySelector('.effect-level__slider');
 const image = imagePreview.querySelector('img');
 
+effectLevelValue.value = DEFAULT_EFFECT_LEVEL;
 let currentEffect = '';
 
 const effects = {
@@ -85,3 +88,5 @@ sliderElement.noUiSlider.on('change', () => {
 
   image.style.filter = effects[currentEffect.replace('effects__preview--', '')]();
 });
+
+export {image, effects};

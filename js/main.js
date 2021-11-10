@@ -1,9 +1,12 @@
 import {renderPhotos} from './pictures.js';
-import './filter.js';
-import './photo-description.js';
 import './pictures.js';
-import './form.js';
+import { closeForm, setUserformSubmit } from './form.js';
 import './hashtags.js';
 import './effects.js';
+import {getData} from './fetch.js';
 
-renderPhotos();
+getData((photos) => {
+  renderPhotos(photos);
+});
+
+setUserformSubmit(closeForm);

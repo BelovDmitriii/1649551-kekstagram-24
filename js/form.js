@@ -1,7 +1,5 @@
 import {isEscapeKey} from './utils.js';
 import {image,effects} from './effects.js';
-import { sendData } from './fetch.js';
-import { showErrorMessage, showSuccessMessage } from './messages.js';
 
 const zoomValue = {
   MIN: 25,
@@ -29,7 +27,7 @@ const closeForm = () => {
 };
 
 const onCloseFormEscKeyDown = (evt) => {
-  if (isEscapeKey(evt) && !evt.target.classList.contains('text__hashtags') && !evt.target.classList.contains('text__description')) {
+  if (isEscapeKey(evt) & !evt.target.classList.contains('text__hashtags') & !evt.target.classList.contains('text__description')) {
     evt.preventDefault();
     closeForm();
   }
@@ -70,16 +68,4 @@ scaleControllBiggerButton.addEventListener('click', () => {
   imagePreview.style.transform = `scale(${size / 100})`;
 });
 
-const setUserformSubmit = (onSuccess) => {
-  formUpload.addEventListener('submit', (evt) => {
-    evt.preventDefault();
-    sendData(
-      () => onSuccess(showSuccessMessage()),
-      () => showErrorMessage(),
-      new FormData(evt.target),
-    );
-  });
-};
-
-
-export {scaleControllValue, closeForm, setUserformSubmit};
+export {scaleControllValue, closeForm};

@@ -30,4 +30,11 @@ const clearPhotos = () => {
   pictures.innerHTML = '';
 };
 
-export {renderPhotos, clearPhotos};
+const removePictures = () => {
+  const photos = pictures.querySelectorAll('.picture');
+  if (photos) {
+    photos.forEach((photo) => photo.remove());
+  }
+};
+
+export {renderPhotos, clearPhotos, removePictures};

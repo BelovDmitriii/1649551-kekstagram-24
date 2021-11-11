@@ -27,7 +27,7 @@ const closeForm = () => {
 };
 
 const onCloseFormEscKeyDown = (evt) => {
-  if (isEscapeKey(evt) & !evt.target.classList.contains('text__hashtags') & !evt.target.classList.contains('text__description')) {
+  if (isEscapeKey(evt) && !evt.target.classList.contains('text__hashtags') && !evt.target.classList.contains('text__description')) {
     evt.preventDefault();
     closeForm();
   }

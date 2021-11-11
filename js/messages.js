@@ -41,16 +41,17 @@ const showSuccessMessage = () => {
   showMessage(messageFragment);
 };
 
+const onSuccess = () => {
+  closeForm();
+  showSuccessMessage();
+};
+const onFail = () => {
+  showErrorMessage();
+  closeForm();
+};
+
 formUpload.addEventListener('submit', (evt) => {
   evt.preventDefault();
   const formData = new FormData(evt.target);
-  const onSuccess = () => {
-    closeForm();
-    showSuccessMessage();
-  };
-  const onFail = () => {
-    showErrorMessage();
-    closeForm();
-  };
   request(onSuccess, onFail, 'POST', formData);
 });

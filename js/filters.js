@@ -11,7 +11,7 @@ const availableFilters = {
   'filter-default': () => photos.slice(),
   'filter-random': () => shuffleArray(photos).slice(0, COUNT_OF_FILTER),
   'filter-discussed': () => {
-    const discussedPhotos = photos.slice().sort((a, b) => b.comments.length - a.comments.length);
+    const discussedPhotos = photos.slice().sort((firstElement, secondElement) => secondElement.comments.length - firstElement.comments.length);
     return discussedPhotos;
   },
 };

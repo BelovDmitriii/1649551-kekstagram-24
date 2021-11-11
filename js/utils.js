@@ -33,4 +33,4 @@ const onBigPictureEscKeyDown = () => {
   }
 };
 
-export { shuffleArray, debounce, checkStringLength, isEscapeKey, onBigPictureEscKeyDown};
+export {debounce, shuffleArray, checkStringLength, isEscapeKey, onBigPictureEscKeyDown};

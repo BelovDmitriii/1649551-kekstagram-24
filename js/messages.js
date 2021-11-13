@@ -1,8 +1,10 @@
 import { closeForm } from './form.js';
 import { isEscapeKey } from './utils.js';
+import { request } from './fetch.js';
 
 const errorMessage = document.querySelector('#error').content.querySelector('.error');
 const successMessage = document.querySelector('#success').content.querySelector('.success');
+const formUpload = document.querySelector('.img-upload__form');
 
 const closePopup = () => {
   const popup =  document.querySelector('.error') || document.querySelector('.success');
@@ -32,13 +34,24 @@ const showMessage = (message) => {
 const showErrorMessage = () => {
   const messageFragment = errorMessage.cloneNode(true);
   showMessage(messageFragment);
-  closeForm();
 };
 
 const showSuccessMessage = () => {
   const messageFragment = successMessage.cloneNode(true);
   showMessage(messageFragment);
+};
+
+const onSuccess = () => {
+  closeForm();
+  showSuccessMessage();
+};
+const onFail = () => {
+  showErrorMessage();
   closeForm();
 };
 
-export {showErrorMessage, showSuccessMessage};
+formUpload.addEventListener('submit', (evt) => {
+  evt.preventDefault();
+  const formData = new FormData(evt.target);
+  request(onSuccess, onFail, 'POST', formData);
+});

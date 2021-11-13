@@ -1,35 +1,23 @@
-import { showErrorMessage, showSuccessMessage } from './messages.js';
-import { showMessage } from './utils.js';
-
-const getData = (onSuccess, onFail) => {
-  fetch('https://24.javascript.pages.academy/kekstagram/data')
-    .then((response) => response.json())
-    .then((photos) => {
-      onSuccess(photos);
-    })
-    .catch(() => {
-      onFail(showMessage());
-    });
+const Urls = {
+  GET: 'https://24.javascript.pages.academy/kekstagram/data',
+  POST: 'https://24.javascript.pages.academy/kekstagram',
 };
 
-const sendData = (onSuccess, onFail, body) => {
-  fetch (
-    'https://24.javascript.pages.academy/kekstagram',
+const request = (onSuccess, onFail, method, body) => {
+  fetch(
+    Urls[method],
     {
-      method: 'POST',
-      body,
+      method: method,
+      body: body,
     },
   )
-    .then((response) => {
-      if (response.ok) {
-        onSuccess(showSuccessMessage);
-      } else {
-        onFail(showErrorMessage);
-      }
+    .then((response) => response.json())
+    .then((data) => {
+      onSuccess(data);
     })
-    .catch(() => {
-      onFail(showErrorMessage);
+    .catch((err) => {
+      onFail(err);
     });
 };
 
-export {getData, sendData};
+export {request};

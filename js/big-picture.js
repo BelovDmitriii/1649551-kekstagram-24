@@ -83,4 +83,4 @@ const showBigPicture = (url, comments, likes, description) => {
   loadComments.addEventListener('click', onloadCommentsButtonClick);
 };
 
-export {showBigPicture, closeBigPicture};
+export { closeBigPicture, showBigPicture};

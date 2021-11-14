@@ -63,3 +63,5 @@ inputHashtag.addEventListener( 'input', () => {
 
   inputHashtag.reportValidity();
 });
+
+export {inputHashtag};

@@ -1,5 +1,3 @@
-import { scaleControllValue } from './form.js';
-
 const DEFAULT_EFFECT_LEVEL = 100;
 
 const Slider = {
@@ -8,11 +6,12 @@ const Slider = {
   STEP: 1,
 };
 
-const effectsList = document.querySelector('.effects__list');
-const imagePreview = document.querySelector('.img-upload__preview');
-const sliderUpload = document.querySelector('.img-upload__effect-level');
-const effectLevelValue = document.querySelector('.effect-level__value');
-const sliderElement = document.querySelector('.effect-level__slider');
+const uploadForm = document.querySelector('.img-upload__form');
+const effectsList = uploadForm.querySelector('.effects__list');
+const imagePreview = uploadForm.querySelector('.img-upload__preview');
+const sliderUpload = uploadForm.querySelector('.img-upload__effect-level');
+const effectLevelValue = uploadForm.querySelector('.effect-level__value');
+const sliderElement = uploadForm.querySelector('.effect-level__slider');
 const image = imagePreview.querySelector('img');
 
 effectLevelValue.value = DEFAULT_EFFECT_LEVEL;
@@ -64,8 +63,6 @@ effectsList.addEventListener('click', (evt) => {
 
     sliderElement.noUiSlider.set(Slider.MAX);
     effectLevelValue.value = Slider.MAX;
-    imagePreview.style.transform = '';
-    scaleControllValue.value = '100%';
 
     currentEffect = target.classList[1];
     image.classList.add(currentEffect);

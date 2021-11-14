@@ -1,21 +1,22 @@
 import {isEscapeKey} from './utils.js';
 import {image,effects} from './effects.js';
+import {inputHashtag} from './hashtags.js';
 
-const zoomValue = {
+const ZoomValue = {
   MIN: 25,
   MAX: 100,
   STEP: 25,
 };
 
 const body = document.querySelector('body');
+const formUpload = body.querySelector('.img-upload__form');
 const overlay = body.querySelector('.img-upload__overlay');
 const fileUpload = body.querySelector('#upload-file');
 const formUploadClose = body.querySelector('#upload-cancel');
 const scaleControllSmallerButton = body.querySelector('.scale__control--smaller');
 const scaleControllBiggerButton = body.querySelector('.scale__control--bigger');
 const scaleControllValue = body.querySelector('.scale__control--value');
-const imagePreview = document.querySelector('.img-upload__preview');
-const formUpload = document.querySelector('.img-upload__form');
+const imagePreview = body.querySelector('.img-upload__preview');
 
 const closeForm = () => {
   overlay.classList.add('hidden');
@@ -30,6 +31,7 @@ const onCloseFormEscKeyDown = (evt) => {
   if (isEscapeKey(evt) && !evt.target.classList.contains('text__hashtags') && !evt.target.classList.contains('text__description')) {
     evt.preventDefault();
     closeForm();
+    document.removeEventListener('keydown', onCloseFormEscKeyDown);
   }
 };
 
@@ -38,6 +40,7 @@ const openForm = () => {
   body.classList.add('modal-open');
   image.style.filter = effects.none();
   document.addEventListener('keydown', onCloseFormEscKeyDown);
+  inputHashtag.style.border = 'none';
 };
 
 fileUpload.addEventListener('change', () => {
@@ -50,22 +53,22 @@ formUploadClose.addEventListener('click', () => {
 
 scaleControllSmallerButton.addEventListener('click', () => {
   let size = parseInt(scaleControllValue.value, 10);
-  if (size === zoomValue.MIN) {
+  if (size === ZoomValue.MIN) {
     return;
   }
-  size -= zoomValue.STEP;
+  size -= ZoomValue.STEP;
   scaleControllValue.value = `${size}%`;
   imagePreview.style.transform = `scale(${size / 100})`;
 });
 
 scaleControllBiggerButton.addEventListener('click', () => {
   let size = parseInt(scaleControllValue.value, 10);
-  if (size === zoomValue.MAX) {
+  if (size === ZoomValue.MAX) {
     return;
   }
-  size += zoomValue.STEP;
+  size += ZoomValue.STEP;
   scaleControllValue.value = `${size}%`;
   imagePreview.style.transform = `scale(${size / 100})`;
 });
 
-export {scaleControllValue, closeForm};
+export { closeForm};

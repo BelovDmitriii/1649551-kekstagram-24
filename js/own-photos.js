@@ -2,6 +2,8 @@ const FILE_TYPES = ['gif', 'jpg', 'jpeg', 'png'];
 
 const uploadFile = document.querySelector('#upload-file');
 const preview = document.querySelector('.img-upload__preview img');
+const effectList = document.querySelector('.effects__list');
+const smallImages = effectList.querySelectorAll('span');
 
 uploadFile.addEventListener('change', () => {
   const file = uploadFile.files[0];
@@ -14,6 +16,8 @@ uploadFile.addEventListener('change', () => {
 
     reader.addEventListener('load', () => {
       preview.src = reader.result;
+      smallImages.forEach((evt) => {
+        evt.style.backgroundImage = `url(${reader.result})`;});
     });
 
     reader.readAsDataURL(file);

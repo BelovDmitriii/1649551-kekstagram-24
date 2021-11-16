@@ -1,4 +1,8 @@
 const DEFAULT_EFFECT_LEVEL = 100;
+const RADIX = 10;
+const EFFECTS_STEP = 0.01;
+const MAX_BLUR_VALUE = 3;
+const MAX_BRIGHTNESS = 3;
 
 const Slider = {
   MIN: 0,
@@ -25,12 +29,12 @@ const effects = {
 
   chrome: () => {
     sliderUpload.classList.remove('visually-hidden');
-    return `grayscale(${parseInt(effectLevelValue.value, 10) * 0.01})`;
+    return `grayscale(${parseInt(effectLevelValue.value, RADIX) * EFFECTS_STEP})`;
   },
 
   sepia: () => {
     sliderUpload.classList.remove('visually-hidden');
-    return `sepia(${parseInt(effectLevelValue.value, 10) * 0.01})`;
+    return `sepia(${parseInt(effectLevelValue.value, RADIX) * EFFECTS_STEP})`;
   },
 
   marvin: () => {
@@ -40,12 +44,12 @@ const effects = {
 
   phobos: () => {
     sliderUpload.classList.remove('visually-hidden');
-    return `blur(${(parseInt(effectLevelValue.value, 10) * 3) * 0.01}px)`;
+    return `blur(${(parseInt(effectLevelValue.value, RADIX) * MAX_BLUR_VALUE) * EFFECTS_STEP}px)`;
   },
 
   heat: () => {
     sliderUpload.classList.remove('visually-hidden');
-    return `brightness(${(parseInt(effectLevelValue.value, 10) * 3) * 0.01})`;
+    return `brightness(${(parseInt(effectLevelValue.value, RADIX) * MAX_BRIGHTNESS) * EFFECTS_STEP})`;
   },
 };
 
